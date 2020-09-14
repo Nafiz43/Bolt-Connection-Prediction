@@ -75,8 +75,8 @@ def predict():
     svr_prediction_o = round(svr_prediction[0], 3)
     xg_prediction_o = round(xg_prediction[0], 3)
     
-    rf_prediction_o=format(rf_prediction_o, '.3f')
-    ab_prediction_o=format(ab_prediction_o, '.3f')
+    rf_prediction_o=format(rf_prediction_o,'.3f')
+    ab_prediction_o=format(ab_prediction_o,'.3f')
     ann_prediction_o=format(ann_prediction_o, '.3f')
     cb_prediction_o=format(cb_prediction_o, '.3f')
     dt_prediction_o=format(dt_prediction_o, '.3f')
