@@ -1,35 +1,181 @@
 <!DOCTYPE html>
-<html >
+<html>
 <!--From https://codepen.io/frytyler/pen/EGdtg-->
+
 <head>
   <meta charset="UTF-8">
   <title>ML API</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!-- JS, Popper.js, and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
 
 <body>
- <div class="login">
-	<h1>Predict Salary Analysis</h1>
+  <div class="container">
+    <div class="row">
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="experience" placeholder="Experience" required="required" />
-        <input type="text" name="test_score" placeholder="Test Score" required="required" />
-		<input type="text" name="interview_score" placeholder="Interview Score" required="required" />
+      <div class="col-md-4 col-sm-12 mt-2">
+        <h3>Bolt Connection Prediction</h3>
+        <!-- Main Input For Receiving Query to our ML -->
+        <form class="form-horizontal" action="{{ url_for('predict')}}" method="post">
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-    </form>
+          <div >
+            <label class="control-label col-sm-4" for="rsn">e1:</label>
+            <div class="col-12">
+              <input class="form-control" name="e1" placeholder="" type="text" required="required" />
+            </div>
 
-   <br>
-   <br>
-   {{ prediction_text }}
+            
 
- </div>
+          </div>
+
+          <div >
+            <label class="control-label col-sm-4" for="rsn">e2:</label>
+            <div class="col-12">
+              <input class="form-control" name="e2" placeholder="" type="text" required="required" />
+            </div>
+          </div>
+
+          <div >
+            <label class="control-label col-sm-4" for="rsn">do:</label>
+            <div class="col-12">
+              <input class="form-control" name="do" placeholder="" type="text" required="required" />
+            </div>
+          </div>
 
 
+          <div >
+            <label class="control-label col-sm-4" for="rsn">fu:</label>
+            <div class="col-12">
+              <input  class="form-control" name="fu" placeholder="" type="text" required="required" />
+            </div>
+          </div>
+
+          <div >
+            <label class="control-label col-sm-4" for="rsn">fy:</label>
+            <div class="col-12">
+              <input  class="form-control" name="fy" placeholder="" type="text" required="required" />
+            </div>
+          </div>
+
+
+          <div >
+            <label class="control-label col-sm-2" for="pwd">Type:</label>
+            <div class="col-12">
+              <select id=course name="type" class="mdb-select md-form form-control">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="0.0">B</option>
+                <option value="1.0">N</option>
+                <option value="2.0">SP</option>
+                <option value="3.0">TO</option>
+              </select>
+            </div>
+            <!-- <input type="text" name="e1/do" placeholder="e1/do" required="required" />
+        <input type="text" name="e2/do" placeholder="e2/do" required="required" />
+		<input type="text" name="fu/fy" placeholder="fu/fy" required="required" />
+		<input type="text" name="type" placeholder="type" required="required" /> -->
+            <div class="container mt-2">
+              <div class="d-flex float-right">
+                <button type="submit" class="btn btn-info">Predict</button>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-4 mt-5 col-sm-12">
+      <img src="pic1.png" style="height: 80%; width: 100%;">
+    </div>
+
+    <div class="col-md-4 mt-2 col-sm-12">
+      <h3>Prediction Resut</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Model</th>
+            <th scope="col">Predicted Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Random Forest</td>
+            <td>{{ prediction_text[0] }}{{ prediction_text[1] }}{{ prediction_text[2] }}{{ prediction_text[3] }}{{ prediction_text[4] }} </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Adaboost</td>
+            <td>{{ prediction_text[5] }}{{ prediction_text[6] }}{{ prediction_text[7] }}{{ prediction_text[8] }}{{ prediction_text[9] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>ANN</td>
+            <td>{{ prediction_text[10] }}{{ prediction_text[11] }}{{ prediction_text[12] }}{{ prediction_text[13] }}{{ prediction_text[14] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>CatBoost</td>
+            <td>{{ prediction_text[15] }}{{ prediction_text[16] }}{{ prediction_text[17] }}{{ prediction_text[18] }}{{ prediction_text[19] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Decision Tree</td>
+            <td>{{ prediction_text[20] }}{{ prediction_text[21] }}{{ prediction_text[22] }}{{ prediction_text[23] }}{{ prediction_text[24] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>KNN</td>
+            <td>{{ prediction_text[25] }}{{ prediction_text[26] }}{{ prediction_text[27] }}{{ prediction_text[28] }}{{ prediction_text[29] }}</td>
+          </tr>
+           <tr>
+            <th scope="row">6</th>
+            <td>Lasso Regression</td>
+            <td>{{ prediction_text[30] }}{{ prediction_text[31] }}{{ prediction_text[32] }}{{ prediction_text[33] }}{{ prediction_text[34] }}</td>
+          </tr>
+           <tr>
+            <th scope="row">6</th>
+            <td>Linear Regression</td>
+            <td>{{ prediction_text[35] }}{{ prediction_text[36] }}{{ prediction_text[37] }}{{ prediction_text[38] }}{{ prediction_text[39] }}</td>
+          </tr>
+
+           <tr>
+            <th scope="row">6</th>
+            <td>Ridge Regression</td>
+            <td>{{ prediction_text[40] }}{{ prediction_text[41] }}{{ prediction_text[42] }}{{ prediction_text[43] }}{{ prediction_text[44] }}</td>
+          </tr>
+
+           <tr>
+            <th scope="row">6</th>
+            <td>SVR</td>
+            <td>{{ prediction_text[45] }}{{ prediction_text[46] }}{{ prediction_text[47] }}{{ prediction_text[48] }}{{ prediction_text[49] }}</td>
+          </tr>
+           <tr>
+            <th scope="row">6</th>
+            <td>XgBoost</td>
+            <td>{{ prediction_text[50] }}{{ prediction_text[51] }}{{ prediction_text[52] }}{{ prediction_text[53] }}{{ prediction_text[54] }}</td>
+          </tr>
+           
+
+
+
+
+
+        </tbody>
+      </table>
+      
+      
+    </div>
+  </div>
+  </div>
 </body>
+
 </html>

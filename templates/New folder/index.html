@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+
+<body>
+ <div class="container">
+	<h1>Bolt Connection Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form class="form-horizontal"  action="{{ url_for('predict')}}"method="post">
+    	
+
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="rsn">e1:</label>
+      <div class="col-sm-3">          
+       
+    
+    <input id="duration" class="form-control" id="date" name="date" placeholder="" type="text" required="required"/>
+
+
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="rsn">e2:</label>
+      <div class="col-sm-3">          
+       
+    
+    <input id="duration" class="form-control" id="date" name="date" placeholder="" type="text" required="required"/>
+
+
+      </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="rsn">do:</label>
+      <div class="col-sm-3">          
+       
+    
+    <input id="duration" class="form-control" id="date" name="date" placeholder="" type="text" required="required"/>
+
+
+      </div>
+    </div>
+
+
+
+
+
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="rsn">fu:</label>
+      <div class="col-sm-3">          
+       
+    
+    <input id="duration" class="form-control" id="date" name="date" placeholder="" type="text" required="required"/>
+
+
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="rsn">fy:</label>
+      <div class="col-sm-3">          
+       
+    
+    <input id="duration" class="form-control" id="date" name="date" placeholder="" type="text" required="required"/>
+
+
+      </div>
+    </div>
+
+
+
+
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Type:</label>
+      <div class="col-sm-3">          
+       
+    
+    <select id=course class="mdb-select md-form form-control">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">B</option>
+      <option value="2">N</option>
+      <option value="3">SP</option>
+      <option value="3">TO</option>
+    </select>
+    
+
+      </div>
+    </div>
+
+
+    	<!-- <input type="text" name="e1/do" placeholder="e1/do" required="required" />
+        <input type="text" name="e2/do" placeholder="e2/do" required="required" />
+		<input type="text" name="fu/fy" placeholder="fu/fy" required="required" />
+		<input type="text" name="type" placeholder="type" required="required" /> -->
+
+        <button type="submit" class="btn btn-primary">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   <h3>Prediction Resut</h3>
+   <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">&nbsp;&nbsp;&nbsp;<br>Model&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    <th class="tg-0lax">&nbsp;&nbsp;&nbsp;<br>Predicted Value&nbsp;&nbsp;&nbsp;</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">Linear Regression<br> &nbsp;&nbsp;&nbsp;</td>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+    <td class="tg-0lax">&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+   {{ prediction_text }}
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
